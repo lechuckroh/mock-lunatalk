@@ -1,0 +1,24 @@
+{
+  "name": "mock-lunatalk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "app": "node src/app.js",
+    "dockerimage": "docker build -t mock-lunatalk .",
+    "docker": "docker run -d -v `pwd`/config/config.js:/app/config/config.js mock-lunatalk",
+    "lint": "eslint --ext .js src"
+  },
+  "keywords": [
+    "kakaotalk"
+  ],
+  "author": "Lechuck Roh",
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.5.1",
+    "koa-route": "^3.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1"
+  }
+}
