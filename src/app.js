@@ -1,12 +1,18 @@
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
 const Koa = require('koa');
 const _ = require('koa-route');
-const config = require('../config/config');
+const config = require('config');
 const {postSend} = require('./controller/messages');
 
-const app = new Koa();
+try {
+  const port = process.env.LUNATALK_PORT || config.get('port');
+  const app = new Koa();
 
-app.use(_.post('/lunatalk/api/message/send', postSend));
+  app.use(_.post('/lunatalk/api/message/send', postSend));
 
-const port = config.PORT;
-app.listen(port);
-console.log(`listening on port ${port}`);
+  app.listen(port);
+  console.log(`Listening on port ${port}...`);
+} catch (e) {
+  console.error(e);
+}

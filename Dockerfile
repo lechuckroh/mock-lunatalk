@@ -10,9 +10,11 @@ RUN cd /app && npm install --no-optional --no-shrinkwrap --no-package-lock
 
 # copy files
 ADD ./src /app/src
-ADD ./config/config.example.js /app/config/config.js
+ADD ./config/default.json /app/config/default.json
 
 WORKDIR /app
+
+ENV NODE_ENV production
 
 VOLUME ["/app/config"]
 

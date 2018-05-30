@@ -1,5 +1,6 @@
 /.idea
 /node_modules
 /yarn.lock
-/config/config.js
+/config/*.json
+!/config/default.json
 *.log

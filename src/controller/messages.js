@@ -1,4 +1,4 @@
-const config = require('../../config/config');
+const config = require('config');
 
 /** 파라미터 validation (2000) */
 const validateParams = function (userid, api_key, template_id, messages) {
@@ -165,7 +165,7 @@ const validateShoppingMall = function () {
  * 템플릿 정보 validation (3001)
  */
 const validateTemplate = function (templateId) {
-  if (!config.VALID_TEMPLATE_ID.includes(templateId)) {
+  if (!config.get('validTemplateId').includes(templateId)) {
     return {
       code: 3001,
       msg: '[3001] template id 를 찾을 수 없음'
@@ -181,7 +181,7 @@ const validateTemplate = function (templateId) {
  * Lunasoft 회원 정보 validation (3002)
  */
 const validateUserid = function (userId) {
-  if (!config.VALID_USER_ID.includes(userId)) {
+  if (!config.get('validUserId').includes(userId)) {
     return {
       code: 3002,
       msg: '[3002] 회원 정보 찾을 수 없음'
@@ -211,16 +211,23 @@ exports.postSend = function (ctx) {
   ];
 
   const ok = validators.every(validator => {
-    const result = validator();
+    try {
+      const result = validator();
 
-    // 에러 발생시 (결과 코드가 0이 아닌 경우)
-    if (result.code > 0) {
-      ctx.status = 200;
-      ctx.body = result;
+      // 에러 발생시 (결과 코드가 0이 아닌 경우)
+      if (result.code > 0) {
+        ctx.status = 200;
+        ctx.body = result;
+        return false;
+      }
+
+      return true;
+    } catch (e) {
+      console.error(e);
+      ctx.status = 500;
+      ctx.body = e;
       return false;
     }
-
-    return true;
   });
 
   // 에러가 없는 경우

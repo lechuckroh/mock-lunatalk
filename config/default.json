@@ -1,0 +1,11 @@
+{
+  "port": 8000,
+  "validUserId": [
+    "test"
+  ],
+  "validTemplateId": [
+    1,
+    2,
+    3
+  ]
+}
