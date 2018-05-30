@@ -7,7 +7,7 @@
 ## 환경설정
 
 ### 설정파일
-`config/config.examplee.js` 파일을 `config/config.js`.파일로 복사한다.
+`config/config.example.js` 파일을 `config/config.js`.파일로 복사한다.
 
 * `config/config.example.js`: 설정 예제 파일
 * `config/config.js`: 개발시 사용할 설정 파일. 버전 관리 대상에서 제외되어 있다.
@@ -34,7 +34,7 @@ $ yarn install
 로컬에 설치된 node.js를 사용해서 실행한다.
 
 ```bash
-# 서버 실행
+# 기본 포트 (8000)에서 서버 실행
 $ npm run app
 
 # 8080번 포트에서 실행
