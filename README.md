@@ -1,5 +1,8 @@
 # 루나소프트 카카오 알림톡 REST API Mocking 서버
 
+[![Build Status](https://travis-ci.org/lechuckroh/mock-lunatalk.svg?branch=master)](https://travis-ci.org/lechuckroh/mock-lunatalk)
+[![Coverage Status](https://coveralls.io/repos/github/lechuckroh/mock-lunatalk/badge.svg?branch=master)](https://coveralls.io/github/lechuckroh/mock-lunatalk?branch=master)
+
 ## 필요항목
 * node.js 7.6+
 * Docker (선택사항)
