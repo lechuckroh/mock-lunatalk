@@ -10,6 +10,7 @@
   "scripts": {
     "test": "NODE_ENV=test mocha --harmony -R spec --require should --recursive --exit test/",
     "coverage": "NODE_ENV=test nyc mocha --harmony -R spec --require should --recursive --exit test/",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "app": "node src/app.js",
     "dockerimage": "docker build -t mock-lunatalk .",
     "docker": "docker run -d -p 8000:8000 -v `pwd`/config/:/app/config/ mock-lunatalk",
@@ -28,6 +29,7 @@
     "winston": "^2.4.2"
   },
   "devDependencies": {
+    "coveralls": "^3.0.1",
     "eslint": "^4.19.1",
     "mocha": "^5.2.0",
     "nyc": "^11.8.0",

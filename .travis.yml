@@ -20,3 +20,6 @@ install:
 
 script:
   - yarn run test
+
+after_success:
+  - yarn run coveralls
