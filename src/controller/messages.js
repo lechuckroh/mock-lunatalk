@@ -32,6 +32,8 @@ const validateParams = function (userid, api_key, template_id, messages) {
   } else {
     if (!Array.isArray(messages)) {
       msgList.push('messages은(는) 반드시 배열이어야 합니다.');
+    } else if (messages.length === 0) {
+      msgList.push('messages 필드는 필수입니다.');
     }
   }
 
@@ -133,20 +135,26 @@ const validateMessages = function (messages) {
     }
 
     // btn_url
-    const {url_pc, url_mobile} = btn_url;
+    for (let i = 0; ; i++) {
+      const item = btn_url[i.toString(10)];
+      if (!item) {
+        break;
+      }
+      const {url_pc, url_mobile} = item;
 
-    // messages.btn_url.url_pc의 길이 초과 (2010)
-    if (url_pc.length > 100) {
-      result.code = 2010;
-      result.msg = `[2010] messages.btn_url.url_pc 의 길이는 100 자 이하입니다. 메세지 번호 : ${no}`;    // eslint-disable-line
-      return false;
-    }
+      // messages.btn_url.url_pc의 길이 초과 (2010)
+      if (url_pc.length > 100) {
+        result.code = 2010;
+        result.msg = `[2010] messages.btn_url.url_pc 의 길이는 100 자 이하입니다. 메세지 번호 : ${no}`;    // eslint-disable-line
+        return false;
+      }
 
-    // messages.btn_url.url_mobile의 길이 초과 (2011)
-    if (url_mobile.length > 100) {
-      result.code = 2011;
-      result.msg = `[2011] messages.btn_url.url_mobile 의 길이는 100 자 이하입니다. 메세지 번호 : ${no}`;    // eslint-disable-line
-      return false;
+      // messages.btn_url.url_mobile의 길이 초과 (2011)
+      if (url_mobile.length > 100) {
+        result.code = 2011;
+        result.msg = `[2011] messages.btn_url.url_mobile 의 길이는 100 자 이하입니다. 메세지 번호 : ${no}`;    // eslint-disable-line
+        return false;
+      }
     }
 
     return true;
@@ -159,7 +167,10 @@ const validateMessages = function (messages) {
  * 쇼핑몰 정보 validation (3000)
  */
 const validateShoppingMall = function () {
-  // not implemented
+  return {
+    code: 0,
+    msg: 'not implemented'
+  };
 };
 
 /**
@@ -201,7 +212,7 @@ exports.postSend = function (ctx) {
     api_key,
     template_id,
     messages
-  } = ctx.request.body;
+  } = ctx.request.body || {};
 
   const validators = [
     () => validateParams(userid, api_key, template_id, messages),

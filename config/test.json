@@ -1,7 +1,7 @@
 {
-  "port": 8000,
+  "port": 48000,
   "validUserId": [
-    "foo"
+    "test"
   ],
   "validTemplateId": [
     1,

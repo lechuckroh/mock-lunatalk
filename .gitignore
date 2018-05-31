@@ -3,4 +3,5 @@
 /yarn.lock
 /config/*.json
 !/config/default.json
+!/config/test.json
 *.log
