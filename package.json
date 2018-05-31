@@ -1,7 +1,11 @@
 {
   "name": "mock-lunatalk",
   "version": "1.0.0",
-  "description": "",
+  "description": "루나소프트 카카오 알림톡 REST API Mocking 서버",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lechuckroh/mock-lunatalk"
+  },
   "main": "index.js",
   "scripts": {
     "app": "node src/app.js",
@@ -17,7 +21,8 @@
   "dependencies": {
     "config": "^1.30.0",
     "koa": "^2.5.1",
-    "koa-route": "^3.2.0"
+    "koa-route": "^3.2.0",
+    "winston": "^2.4.2"
   },
   "devDependencies": {
     "eslint": "^4.19.1"

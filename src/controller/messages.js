@@ -1,4 +1,5 @@
 const config = require('config');
+const winston = require('winston');
 
 /** 파라미터 validation (2000) */
 const validateParams = function (userid, api_key, template_id, messages) {
@@ -223,7 +224,7 @@ exports.postSend = function (ctx) {
 
       return true;
     } catch (e) {
-      console.error(e);
+      winston.error(e);
       ctx.status = 500;
       ctx.body = e;
       return false;
